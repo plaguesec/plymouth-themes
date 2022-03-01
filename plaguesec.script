@@ -18,13 +18,10 @@ outline.image = Image("outline.png");
 fade.image = Image("plague-logo-fade.png");
 passwordDot.image = Image("plague-dot.png");
 
-// Kali logo can't be aligned by its natural center but by the circle center
-// formed inside its body curve. This can be easily calculated by the offset
-// ratio defined before.
 logo.rightOffset = logo.image.GetWidth() * LOGO_RIGHT_OFFSET_RATIO;
 logo.topOffset = logo.image.GetHeight() * LOGO_TOP_OFFSET_RATIO;
 
-fun centerKaliLogo (image, zIndex) {
+fun centerLogo (image, zIndex) {
   sprite = Sprite(image);
   sprite.SetX(X_CENTER - image.GetWidth() / 2 + logo.rightOffset);
   sprite.SetY(Y_CENTER - image.GetHeight() / 2 + logo.topOffset);
@@ -33,13 +30,13 @@ fun centerKaliLogo (image, zIndex) {
   return sprite;
 }
 
-/* Kali logo sprites */
-logo.sprite = centerKaliLogo(logo.image, 4);
-fade.sprite = centerKaliLogo(fade.image, 3);
-container.sprite = centerKaliLogo(container.image, 2);
-outline.sprite = centerKaliLogo(outline.image, 1);
+/*logo sprites */
+logo.sprite = centerLogo(logo.image, 4);
+fade.sprite = centerLogo(fade.image, 3);
+container.sprite = centerLogo(container.image, 2);
+outline.sprite = centerLogo(outline.image, 1);
 
-fun showKaliLogo () {
+fun showPlagueSecLogo () {
   logo.sprite.SetOpacity(1);
   fade.sprite.SetOpacity(0.5);
 }
@@ -69,7 +66,7 @@ fun passwordDialogSetup () {
   passwordField.sprite.SetY(passwordField.y);
   passwordField.sprite.SetZ(passwordField.z);
   global.passwordField = passwordField;
-  showKaliLogo();
+  showPlagueSecLogo();
 }
 
 fun setPasswordDialogOpacity (opacity) {
@@ -116,7 +113,7 @@ fun displayNormalLogoCallback () {
   if (global.passwordField)
     setPasswordDialogOpacity(0);
   prompt.SetOpacity(0);
-  showKaliLogo();
+  showPlagueSecLogo();
 }
 
 Plymouth.SetDisplayNormalFunction(displayNormalLogoCallback);
